@@ -40,9 +40,12 @@ class _UploadScreenState extends State<UploadScreen> {
       // File uploaded successfully
       var responseBody = await response.stream.bytesToString();
       var parsedResponse = jsonDecode(responseBody);
-
+      print(parsedResponse);
       String fight = parsedResponse['fight'].toString();
       String percentageOfFight = parsedResponse['percentageoffight'].toString();
+      String processingTime = parsedResponse['processing_time'].toString();
+      int processingTimeInMilliseconds = int.parse(processingTime);
+      double processingTimeInSeconds = processingTimeInMilliseconds / 1000;
 
       Navigator.push(
         context,
@@ -50,6 +53,7 @@ class _UploadScreenState extends State<UploadScreen> {
           builder: (context) => ResultScreen(
             fight: fight,
             percentageOfFight: percentageOfFight,
+            processingTime: processingTimeInSeconds,
           ),
         ),
       );

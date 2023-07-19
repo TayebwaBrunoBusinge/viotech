@@ -4,9 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 class ResultScreen extends StatelessWidget {
   final String fight;
   final String percentageOfFight;
+  final double processingTime;
 
   const ResultScreen(
-      {super.key, required this.fight, required this.percentageOfFight});
+      {super.key,
+      required this.fight,
+      required this.percentageOfFight,
+      required this.processingTime});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +18,10 @@ class ResultScreen extends StatelessWidget {
       String realPercentage =
           ((double.parse(percentageOfFight)) * 100).toStringAsFixed(2);
 
-      if (fight == 'true') {
+      String processingTimeString = processingTime.toString();
+      if (fight == 'false') {
         return Text(
-          'We are $realPercentage % sure that there is no violence in this video.',
+          'We are $realPercentage % sure that there is no violence in this video. Processing Time: $processingTimeString seconds',
           style: const TextStyle(
             fontFamily: 'Poppins',
             color: Color.fromARGB(255, 0, 0, 40),
@@ -25,7 +30,7 @@ class ResultScreen extends StatelessWidget {
         );
       }
       return Text(
-        'We are $realPercentage % sure that there is violence in this video.',
+        'We are $realPercentage % sure that there is violence in this video. Processing Time: $processingTimeString seconds',
         style: GoogleFonts.poppins(
             textStyle: const TextStyle(
           color: Color.fromARGB(255, 0, 0, 40),
@@ -80,7 +85,7 @@ class ResultScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Welcome..',
+              'Results',
               style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
                 color: Colors.white,
@@ -92,7 +97,7 @@ class ResultScreen extends StatelessWidget {
               height: 20,
             ),
             Text(
-              'to violence detection system.',
+              'are in!',
               style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
                 color: Colors.grey,
